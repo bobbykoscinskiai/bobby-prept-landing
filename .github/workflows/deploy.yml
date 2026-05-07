@@ -33,7 +33,10 @@ jobs:
         run: pnpm install
 
       - name: Build client
-        run: npx vite build --base=/bobby-prept-landing/ --outDir=dist
+        run: npx vite build --base=/bobby-prept-landing/
+        env:
+          VITE_ANALYTICS_ENDPOINT: ""
+          VITE_ANALYTICS_WEBSITE_ID: ""
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -41,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist/public
 
   deploy:
     environment:
